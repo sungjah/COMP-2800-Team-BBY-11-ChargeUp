@@ -62,3 +62,11 @@
 .nav_icon {
     font-size: 30px;
 }
+
+#bottomMargin {
+    min-height: 75px;
+}
+
+#topMargin {
+    min-height: 128px;
+}
