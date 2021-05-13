@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Login to ChargeUp</title>
+
+    <!-- Firebase authentication and JQuery -->
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
+
+    <!-- Styles of our own -->
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+
+</head>
+
+<body>
+    <form action="" method="post">
+        <fieldset>
+            <legend>Apply Now</legend>
+            <input type="text" id="address" name="address" required="required" placeholder="Enter your address"
+                minlength="8" maxlength="20" />
+            <input type="number" id="unit" name="unit" placeholder="Unit number" required="required" />
+            <input type="text" id="postalcode" name="postalcode" required="required"
+                placeholder="Enter your postal code" minlength="6" maxlength="6" />
+            <br /><br />
+            <button id="submit" type="button">Submit</button>
+            <input id="reset" name="reset" value="Reset" type="reset" />
+        </fieldset>
+    </form>
+
+
+    <!-- JavaScript and Firebase -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
+
+    <!-- Link to the API keys for firebase project -->
+    <script src="js/firebase_api_chargeup.js"></script>
+
+    <!-- Scripts of our own -->
+    <script src="js/verify.js"></script>
+    <script>
+        submit();
+    </script>
+
+</body>
+
+</html>
