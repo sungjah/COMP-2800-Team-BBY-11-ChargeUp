@@ -1,0 +1,120 @@
+body
+{
+    background-color: #4e1176;
+}
+
+#content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.cardImage {
+    width: 100%;
+    height: 70%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#antonCard {
+background-image: url(/img/antonImage.png);
+}
+
+#jaeCard {
+background-image: url(/img/jaeImage.png);
+}
+
+#jacobCard {
+background-image: url(/img/jacobImage.png);
+}
+
+#maksymCard {
+background-image: url(/img/maksymImage.png);
+}
+
+.card {
+    height: 60vw;
+    width: 42vw;
+    background-color: rgb(228, 170, 63);
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 4px;
+    border-color: rgb(214, 214, 214);
+    margin: 3vw;
+    margin-bottom: 18vh;
+}
+
+.topCard {
+    margin-top: 9vh;
+}
+
+.bottomCard {
+    margin-bottom: 9vh;
+}
+
+#cardName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow:  inset 0px 0px 10px  rgba(253, 0, 0, 0.671);
+    height: 30%;
+    font-size: 6.8vw;
+    text-align: center;
+    padding-right: 5%;
+    padding-left: 5%;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+
+#cardText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow:  inset 0px 0px 2vh rgba(253, 0, 0, 0.671);
+    height: 100%;
+    font-size: 5.6vw;
+    text-align: center;
+    padding-right: 5%;
+    padding-left: 5%;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+
+.card:hover {
+    border-color: rgb(255, 255, 255);
+    background-color: rgb(243, 169, 32);
+}
+
+.aboutContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+#groupDescription {
+    background-color: white;
+    margin: 3vw;
+    padding: 5vw;
+    text-align: center;
+    border-radius: 30px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-style: solid;
+    border-color: rgb(0, 106, 255);
+    font-size: 6vw;
+    padding-top: 10vw;
+    box-shadow: inset 0 0 2vw 0.3vw rgb(70, 0, 135);
+}
+.containerTitle {
+    background-color: white;
+    width: 50vw;
+    padding: 5vw;
+    text-align: center;
+    border-radius: 30px;
+    border-style: solid;
+    border-color: rgb(0, 106, 255);
+    font-size: 8vw;
+    transform: translateY(13vw);
+    margin-left: 10vw;
+    box-shadow: inset 0 0 1vw 0.15vw rgb(70, 0, 135);
+}
