@@ -1,13 +1,13 @@
-﻿
-
-.navbar-brand {
+﻿.navbar-brand {
     height: 90px;
     margin-left: 10px;
     margin-top: -10px;
+    position: fixed;
+    z-index: 2;
 }
 
 .header {
-    margin-left: 90px;
+    margin-left: 120px;
     margin-right: auto;
     color: orange;
 }
