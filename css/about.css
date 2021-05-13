@@ -7,6 +7,7 @@ body
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 
@@ -29,6 +30,10 @@ background-image: url(/img/jaeImage.png);
 background-image: url(/img/jacobImage.png);
 }
 
+.jacobCard {
+    height: 65vw !important;
+}
+
 #maksymCard {
 background-image: url(/img/maksymImage.png);
 }
@@ -42,15 +47,11 @@ background-image: url(/img/maksymImage.png);
     border-width: 4px;
     border-color: rgb(214, 214, 214);
     margin: 3vw;
-    margin-bottom: 18vh;
+    margin-bottom: 18vw;
 }
 
-.topCard {
-    margin-top: 9vh;
-}
-
-.bottomCard {
-    margin-bottom: 9vh;
+.longCard {
+    height: 100vw;
 }
 
 #cardName {
@@ -74,11 +75,15 @@ background-image: url(/img/maksymImage.png);
     box-shadow:  inset 0px 0px 2vh rgba(194, 0, 253, 0.671);
     height: 100%;
     font-size: 5.6vw;
-    text-align: center;
+    text-align: left;
     padding-right: 5%;
     padding-left: 5%;
     font-family: 'Montserrat', sans-serif;
     color: white;
+}
+
+.longCardText {
+    font-size: 4.8vw !important;
 }
 
 .card:hover {
@@ -88,7 +93,7 @@ background-image: url(/img/maksymImage.png);
 
 .aboutContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 #groupDescription {
