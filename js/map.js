@@ -347,7 +347,7 @@
      container: 'map',
      style: "mapbox://styles/mapbox/streets-v11",
      center: [-123.116226, 49.246292],
-     zoom: 3
+     zoom: 10
  });
 
  map.addControl(
