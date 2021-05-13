@@ -2,12 +2,25 @@
     height: 90px;
     margin-left: 10px;
     margin-top: -10px;
+    position: fixed;
+    z-index: 2;
 }
 
 .header {
-    margin-left: 90px;
+    margin-left: 120px;
     margin-right: auto;
     color: orange;
+
+}
+
+.navbar {
+    position: fixed;
+    z-index: 2;
+    width: 100vw;
+    min-height: 128px;
+    max-height: 128px;
+    padding-top: 24px;
+    padding-bottom: 24px;
 }
 
 .nav {
