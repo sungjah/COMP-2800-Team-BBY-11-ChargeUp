@@ -19,15 +19,15 @@ body
 }
 
 #antonCard {
-background-image: url(/img/antonImage.png);
+background-image: url(../img/antonImage.png);
 }
 
 #jaeCard {
-background-image: url(/img/jaeImage.png);
+background-image: url(../img/jaeImage.png);
 }
 
 #jacobCard {
-background-image: url(/img/jacobImage.png);
+background-image: url(../img/jacobImage.png);
 }
 
 .jacobCard {
@@ -35,7 +35,7 @@ background-image: url(/img/jacobImage.png);
 }
 
 #maksymCard {
-background-image: url(/img/maksymImage.png);
+background-image: url(../img/maksymImage.png);
 }
 
 .card {
