@@ -382,3 +382,10 @@
          )
          .addTo(map);
  });
+
+ map.addControl(
+     new MapboxDirections({
+         accessToken: mapboxgl.accessToken
+     }),
+     'top-left'
+ );
