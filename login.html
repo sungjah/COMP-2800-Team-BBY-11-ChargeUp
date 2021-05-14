@@ -48,7 +48,7 @@
             <i class="material-icons nav_icon">question_answer</i>
             <span class="navtext">Q&A</span>
         </a>
-        <a href="#" class="navlink">
+        <a href="./verify.html" class="navlink">
             <i class="material-icons nav_icon">article</i>
             <span class="navtext">News</span>
         </a>
@@ -96,7 +96,7 @@
                                 email: user.email //with authenticated user's ID (user.uid)
                             }).then(function () {
                                 console.log("New user added to firestore");
-                                window.location.assign("map.html"); //re-direct to main.html after signup
+                                window.location.assign("map.html"); //re-direct to map.html after signup
                             })
                             .catch(function (error) {
                                 console.log("Error adding new user: " + error);
