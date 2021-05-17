@@ -1,0 +1,90 @@
+body {
+    margin:0;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 100vw;
+    max-height: 100vh;
+    align-items: center;
+ }
+ 
+ #logo {
+     width: 43vw;
+     margin-top: 3vh;
+ }
+
+ #welcome {
+     font-size: 5vh;
+     text-align: center;
+     margin-left: 3vw;
+     margin-right: 3vw;
+ }
+
+ #welcomeText {
+     font-size: 3vh;
+     text-align: center;
+     margin: 3vw;
+     margin-top: 5vh;
+ }
+
+ .buttonDiv {
+     background-color: rgb(98, 169, 255);
+     width: 20vh;
+     font-size: 3.5vh;
+     text-align: center;
+     margin-top: 6vh;
+     padding: 1.7vh;
+     color: white;
+     border-radius: 3vw;
+     box-shadow:  inset 0px 0px 3vw #0e7289;
+     text-shadow: -3px 2px 6px rgb(6, 43, 110);
+     margin-bottom: 10vh;
+ }
+
+ .buttonDiv:hover {
+    background-color: rgb(4, 86, 228);
+ }
+
+ #inputForm {
+    backdrop-filter: 
+        blur(0.5px)
+        sepia(40%) 
+        contrast(70%) 
+        brightness(70%) /*black to white*/
+        saturate(800%) /*grey to color*/
+        hue-rotate(180deg); /*color* 0/360 = yellow*/;
+    width: 400px;
+    line-height: 40px;
+    border-radius: 30px;
+    border-style: solid;
+    border-color: rgb(240, 176, 1);
+    padding: 30px;
+    box-shadow: 5px 10px 3px rgba(20, 54, 96, 0.557);
+ }
+
+ .containerTitle {
+     color: white;
+     font-size: 20px;
+     background-color: rgba(0, 81, 181, 0.537);
+     border-radius: 20px;
+     padding: 4px;
+     margin-bottom: 15px;
+     transform:translateY(15px);
+     border-style: solid;
+     border-color: rgb(46, 28, 181);
+     border-width: 3px;
+     box-shadow: 2px 3px 3px rgba(20, 54, 96, 0.557);
+ }
+
+ #note {
+     padding: 10px;
+     padding-left :30px;
+     font-size: 20px;
+     border-radius: 10px;
+     background-color: rgba(255, 255, 255);
+     width: 400px;
+     color:rgb(49, 49, 49)
+ }

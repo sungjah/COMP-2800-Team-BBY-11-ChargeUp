@@ -20,6 +20,9 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <!-- Favicon -->
+    <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
 </head>
 
 <body>
@@ -44,11 +47,11 @@
             <i class="material-icons nav_icon">map</i>
             <span class="navtext">Map</span>
         </a>
-        <a href="#" class="navlink">
+        <a href="./about.html" class="navlink">
             <i class="material-icons nav_icon">question_answer</i>
             <span class="navtext">Q&A</span>
         </a>
-        <a href="#" class="navlink">
+        <a href="./verify.html" class="navlink">
             <i class="material-icons nav_icon">article</i>
             <span class="navtext">News</span>
         </a>
@@ -96,7 +99,7 @@
                                 email: user.email //with authenticated user's ID (user.uid)
                             }).then(function () {
                                 console.log("New user added to firestore");
-                                window.location.assign("map.html"); //re-direct to main.html after signup
+                                window.location.assign("map.html"); //re-direct to map.html after signup
                             })
                             .catch(function (error) {
                                 console.log("Error adding new user: " + error);
