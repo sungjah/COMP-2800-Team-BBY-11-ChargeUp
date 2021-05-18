@@ -1,9 +1,9 @@
 // JavaScript source code
 
-const note1 = new Audio('../audio/note1.mp3');
-const note2 = new Audio('../audio/note2.mp3');
-const note3 = new Audio('../audio/note3.mp3');
-const note4 = new Audio('../audio/note4.mp3');
+const note1 = new Audio('../audio/note1.ogg');
+const note2 = new Audio('../audio/note2.ogg');
+const note3 = new Audio('../audio/note3.ogg');
+const note4 = new Audio('../audio/note4.ogg');
 
 $(document).ready(function () {
     let state = 0;
