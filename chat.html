@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title> Chat Test </title>
+    <!-- Google fonts. -->
+    <link href='https://fonts.googleapis.com/css?family=Bungee Outline' rel='stylesheet' />
+    <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet' />
+    <!-- Use font awesome icons. -->
+
+    <!-- Use firebase app and database. -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+
+    <!-- The CSS and JS file must be declared after the things above-->
+    <link rel="stylesheet" href="index.css" />
+
+
+</head>
+
+<body>
+
+    <!-- <form onsubmit="return getName();">
+           
+            <button onclick="sender();" id="submitButton">Submit</button>
+        </form> -->
+
+    <form onsubmit="return getName();">
+        <div class="nameInput">
+            <input id="userInput" placeholder="Enter your name">
+            <!-- <input type="submit" value="submit" id="submitButton"> -->
+            <button type="submit" id="submitButton">Enter</button>
+        </div>
+    </form>
+    <form onsubmit="return sendMessage();">
+        <input id="message" placeholder="Enter message">
+
+        <input type="submit">
+    </form>
+
+    <ul id="messages"></ul>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="index.js"></script>
+
+</body>
+
+</html>
