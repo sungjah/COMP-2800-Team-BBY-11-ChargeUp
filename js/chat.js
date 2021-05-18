@@ -40,3 +40,19 @@ function getName() {
 $("form").submit((e) => {
     e.preventDefault();
 });
+
+function sendMessage() {
+    var myName = document.getElementById("userInput").value;
+    // get message
+    var message = document.getElementById("message").value;
+
+    // save in database
+    firebase.database().ref("messages").push().set({
+        "sender": myName,
+        "message": message
+    });
+
+
+    // prevent form from submitting
+    return false;
+}
