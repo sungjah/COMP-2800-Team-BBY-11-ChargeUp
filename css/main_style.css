@@ -69,3 +69,7 @@
 #topMargin {
     min-height: 128px;
 }
+
+#top {
+    text-decoration: none;
+}

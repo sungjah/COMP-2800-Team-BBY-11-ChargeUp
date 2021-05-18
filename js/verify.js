@@ -31,3 +31,23 @@ function submit() {
     })
 }
 //submit();
+
+function greetings() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            // User is signed in.
+            // Do something for the user here. 
+            console.log(user.uid);
+            db.collection("users").doc(user.uid)
+                .get()
+                .then(function (doc) {
+                    var n = doc.data().name;
+                    console.log(n);
+                    $("#username").text(n);
+                })
+        } else {
+            // No user is signed in.
+        }
+    });
+}
+//greetings();
