@@ -70,7 +70,9 @@
     min-height: 128px;
 }
 
-#top {}
+#top {
+    text-decoration: none;
+}
 
 .displayOff {
     transform: translateX(-100vw) !important;
