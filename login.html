@@ -11,9 +11,6 @@
     <!-- Firebase authentication and JQuery -->
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
 
-    <!-- Styles of our own -->
-    <link rel="stylesheet" type="text/css" href="css/main_style.css" />
-
     <!-- Other links -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -23,6 +20,9 @@
     <!-- Favicon -->
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
+
+    <!-- Styles of our own -->
+    <link rel="stylesheet" type="text/css" href="css/main_style.css" />
 </head>
 
 <body>
@@ -33,9 +33,21 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="map.html"><img src="img/87b4f1ba62b54e6b90c3bd82c30e7b26.png" alt="logo1"></a>
             <h1 class="header">ChargeUp</h1>
+            <button class="menuButton material-icons" type="button" onclick="displayMenu()">menu</button>
         </div>
 
     </nav>
+    <!--Hamburger menu-->
+    <div id="hamburgerMenu" class="">
+        <button class="exitButton material-icons" type="button" onclick="hideMenu()">clear</button>
+        <div id="menuItemContainer">
+            <a href="./about.html" class="menuItem">About Us</a>
+            <a href="./login.html" class="menuItem">Sign In</a>
+        </div>
+    </div>
+
+    <div id="topMargin"></div>
+
     <div id="firebaseui-auth-container"></div>
     <div id="loader">Loading...</div>
 
@@ -47,15 +59,15 @@
             <i class="material-icons nav_icon">map</i>
             <span class="navtext">Map</span>
         </a>
-        <a href="./about.html" class="navlink">
+        <a href="#" class="navlink">
             <i class="material-icons nav_icon">question_answer</i>
             <span class="navtext">Chat</span>
         </a>
-        <a href="./verify.html" class="navlink">
+        <a href="#" class="navlink">
             <i class="material-icons nav_icon">article</i>
             <span class="navtext">News</span>
         </a>
-        <a href="./login.html" class="navlink">
+        <a href="./verify.html" class="navlink">
             <i class="material-icons nav_icon">account_circle</i>
             <span class="navtext">Sign Up</span>
         </a>
@@ -64,7 +76,7 @@
     <!-- JavaScript and Firebase -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-auth.js"></script>
@@ -75,6 +87,7 @@
     <script src="js/firebase_api_chargeup.js"></script>
 
     <!-- Scripts of our own -->
+    <script src="js/hamburger.js"></script>
     <script>
         // Initialize the FirebaseUI Widget using Firebase.
         var ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -95,12 +108,12 @@
                     var user = authResult.user;
                     if (authResult.additionalUserInfo.isNewUser) { //if new user
                         db.collection("users").doc(user.uid).set({ //write to firestore
-                                name: user.displayName, //"users" collection
-                                email: user.email //with authenticated user's ID (user.uid)
-                            }).then(function () {
-                                console.log("New user added to firestore");
-                                window.location.assign("map.html"); //re-direct to map.html after signup
-                            })
+                            name: user.displayName, //"users" collection
+                            email: user.email //with authenticated user's ID (user.uid)
+                        }).then(function () {
+                            console.log("New user added to firestore");
+                            window.location.assign("map.html"); //re-direct to map.html after signup
+                        })
                             .catch(function (error) {
                                 console.log("Error adding new user: " + error);
                             });
