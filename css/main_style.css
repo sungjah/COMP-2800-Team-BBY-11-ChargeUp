@@ -69,3 +69,45 @@
 #topMargin {
     min-height: 128px;
 }
+
+.displayOff {
+    transform: translateX(-100vw);
+    transition: transform 0.5s;
+}
+
+.displayOn {
+    transform: translateX(0px);
+    transition: transform 0.5s;
+}
+
+#hamburgerMenu {
+    background-color: #3388ffc4;
+    min-width: 100vw;
+    max-width: 100vw;
+    position: fixed;
+    top: 0;
+    z-index: 3;
+    height: 90vh;
+    backdrop-filter: blur(5px);
+}
+
+.menuButton {
+    position: absolute;
+    right: 1vw;
+    top: 1vw;
+}
+
+.exitButton {
+    position: absolute;
+    right: 1vw;
+    top: 1vw;
+    background-color: rgb(255, 94, 94);
+    color: white
+}
+
+#menuItem {
+    background-color: white;
+    margin: 3vw;
+    max-width: 80%;
+    width:30%;
+}
