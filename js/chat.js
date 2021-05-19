@@ -23,8 +23,8 @@ $('#submitButton').click(function () {
 function getName() {
     var myName = document.getElementById("userInput").value;
     firebase.database().ref("messages").push().set({
-        "sender": myName,
-        "message": "has entered the chat!"
+        "sender": "<span style='color:blue'>" + myName + "</span>",
+        "message": "<span style='color:red'>" + "has entered the chat!" + "</span>"
     });
     // // get message
     // var message = document.getElementById("message").value;
