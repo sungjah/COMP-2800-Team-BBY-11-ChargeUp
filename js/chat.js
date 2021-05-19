@@ -48,7 +48,7 @@ function sendMessage() {
 
     // save in database
     firebase.database().ref("messages").push().set({
-        "sender": myName,
+        "sender": "<span style='color:blue'>" + myName + "</span>",
         "message": message
     });
 

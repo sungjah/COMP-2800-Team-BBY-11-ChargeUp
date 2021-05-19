@@ -50,6 +50,7 @@
            
             <button onclick="sender();" id="submitButton">Submit</button>
         </form> -->
+    <h1>Chatroom</h1>
 
     <form onsubmit="return getName();">
         <div class="nameInput">
@@ -58,13 +59,17 @@
             <button type="submit" id="submitButton">Enter</button>
         </div>
     </form>
+    <div id=chatContainer>
+        <ul id="messages"></ul>
+    </div>
     <form onsubmit="return sendMessage();">
         <input id="message" placeholder="Enter message">
 
         <input type="submit">
     </form>
 
-    <ul id="messages"></ul>
+    <!-- <ul id="messages"></ul> -->
+
 
     <div id="bottomMargin"></div>
 
@@ -96,6 +101,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
     </script>
     <script type="text/javascript" src="js/chat.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/egg.js"></script>
+    <script src="js/hamburger.js"></script>
 
 </body>
 
