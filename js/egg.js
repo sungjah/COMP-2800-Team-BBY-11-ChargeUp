@@ -14,7 +14,7 @@ $(document).ready(function () {
         }
         else if (state == 6) {
             note1.play();
-            
+
             setTimeout(function () { note4.play(); }, 1500);
             setTimeout(function () { note2.play(); }, 2000);
             setTimeout(function () { note3.play(); }, 2500);
@@ -80,4 +80,5 @@ $(document).ready(function () {
             state = 0;
         }
     });
+
 });
