@@ -19,6 +19,7 @@ $('#submitButton').click(function () {
     $('.nameInput').hide();
 });
 // var myName = prompt("Enter your name");
+// var myName = document.getElementById("userInput").value;
 
 function getName() {
     var myName = document.getElementById("userInput").value;
@@ -35,8 +36,6 @@ function getName() {
     //     "message": message
     // });
 }
-
-// const name = () => document.getElementByID("userInput").value;
 $("form").submit((e) => {
     e.preventDefault();
 });
@@ -57,13 +56,35 @@ function sendMessage() {
     return false;
 }
 
+function deleteMessage(self) {
+    var myName = document.getElementById("userInput").value;
+    // get message ID
+    var messageId = self.getAttribute("data-id");
+
+    // delete message
+    firebase.database().ref("messages").child(messageId).remove();
+}
+
+// attach listener for delete message
+firebase.database().ref("messages").on("child_removed", function (snapshot) {
+    // remove message node
+    document.getElementById("message-" + snapshot.key).innerHTML = "This message has been removed";
+});
+
 // listen for incoming messages
 firebase.database().ref("messages").on("child_added", function (snapshot) {
     var html = "";
+    var myName = document.getElementById("userInput").value;
     // give each message a unique ID
     html += "<li id='message-" + snapshot.key + "'>";
-    html += snapshot.val().sender + ": " + snapshot.val().message;
-    html += "</li>";
+    if (snapshot.val().sender == "<span style='color:blue'>" + myName + "</span>") {
+        html += snapshot.val().sender + ": " + snapshot.val().message + " " + "<button data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
+        html += "Delete";
+        html += "</button>";
+        html += "</li>";
+    } else {
+        html += snapshot.val().sender + ": " + snapshot.val().message;
+    }
 
     document.getElementById("messages").innerHTML += html;
 });
