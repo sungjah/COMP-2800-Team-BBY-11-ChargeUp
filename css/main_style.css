@@ -1,4 +1,9 @@
-﻿.navbar-brand {
+﻿#content {
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+.navbar-brand {
     height: 90px;
     margin-left: 10px;
     margin-top: -10px;
