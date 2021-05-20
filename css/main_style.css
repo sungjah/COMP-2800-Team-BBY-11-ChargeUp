@@ -20,6 +20,7 @@
     max-height: 128px;
     padding-top: 24px;
     padding-bottom: 24px;
+    box-shadow: 0 -3px 50px rgba(0, 0, 0, 0.769);
 }
 
 .nav {
@@ -31,6 +32,7 @@
     background-color: #3387FF;
     display: flex;
     overflow-x: auto;
+    box-shadow: 0 3px 50px rgba(0, 0, 0, 0.769);
 }
 
 .navlink {
