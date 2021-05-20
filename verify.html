@@ -49,19 +49,45 @@
 
     <div id="topMargin"></div>
 
-    <h1>Hi, <span id="username"></span>! Let's start listing your private outlet.</h1>
-    <form action="" method="post">
-        <fieldset>
-            <input type="text" id="address" name="address" required="required" placeholder="Enter your address"
-                minlength="8" maxlength="20" />
-            <input type="number" id="unit" name="unit" placeholder="Unit number" required="required" />
-            <input type="text" id="postalcode" name="postalcode" required="required"
-                placeholder="Enter your postal code" minlength="6" maxlength="6" />
-            <br /><br />
-            <button id="submit" type="button">Submit</button>
-            <input id="reset" name="reset" value="Reset" type="reset" />
-        </fieldset>
-    </form>
+    <div id="container">
+        <h1>Hi, <span id="username"></span>! Let's start listing your charging outlet.</h1>
+        <form action="" method="post">
+            <fieldset>
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" required="required" placeholder="Enter your address" />
+                <label for="additional">Additional Information</label>
+                <input type="text" id="additional" name="additional" placeholder="Other details about your residence" />
+                <label for="postalcode">Postal Code</label>
+                <input type="text" id="postalcode" name="postalcode" required="required"
+                    placeholder="Enter your postal code" minlength="6" maxlength="7" />
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" required="required" placeholder="Enter your city" />
+                <label for="province">Province</label>
+                <select id="province" name="province" required="required" placeholder="Select">
+                    <option value="Default">Select</option>
+                    <option value="AB">Alberta</option>
+                    <option value="BC">British Columbia</option>
+                    <option value="MB">Manitoba</option>
+                    <option value="NB">New Brunswick</option>
+                    <option value="NL">Newfoundland and Labrador</option>
+                    <option value="NT">Northwest Territories</option>
+                    <option value="NS">Nova Scotia</option>
+                    <option value="NU">Nunavut</option>
+                    <option value="ON">Ontario</option>
+                    <option value="PE">Prince Edward Island</option>
+                    <option value="QC">Quebec</option>
+                    <option value="SK">Saskatchewan</option>
+                    <option value="YT">Yukon</option>
+                </select>
+                <label for="country">Country</label>
+                <select id="country" name="country" required="required" placeholder="Canada">
+                    <option value="Canada">Canada</option>
+                </select>
+                <button id="submit" type="button">Submit</button>
+                <input id="reset" name="reset" value="Reset" type="reset" />
+            </fieldset>
+        </form>
+    </div>
 
     <!--
         BOTTOM NAVBAR
