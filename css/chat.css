@@ -1,0 +1,16 @@
+li {
+    list-style: none;
+}
+
+body {
+    text-align: center;
+    background-color: lightcyan;
+}
+
+#chatContainer {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 10px;
+}

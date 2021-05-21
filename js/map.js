@@ -389,3 +389,48 @@
      }),
      'top-left'
  );
+
+/* Data for verified charging stations */
+
+ var verifygeojson = {
+    "type": "FeatureCollection",
+    "features": [{
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-123.002986, 49.251406]
+        },
+        "properties": {
+            "address": "3700 Willingdon Avenue",
+            "lot_operator": "Private Lot",
+            "geo_local_area": "Burnaby"
+        }
+    }]
+}
+
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        verifygeojson.features.forEach(function (marker) {
+            var el2 = document.createElement('div');
+            el2.className = 'marker2';
+
+            new mapboxgl.Marker(el2)
+                .setLngLat(marker.geometry.coordinates)
+                .setPopup(
+                    new mapboxgl.Popup({
+                        offset: 25
+                    }) // add popups
+                        .setHTML(
+                            '<h3>' +
+                            marker.properties.address +
+                            '</h3><p>' +
+                            'Lot Operator: ' + marker.properties.lot_operator +
+                            '</p>'
+                        )
+                )
+                .addTo(map);
+        })
+    } else {
+        // No user is signed in.
+    }
+});
