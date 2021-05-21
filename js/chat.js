@@ -1,5 +1,3 @@
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
     apiKey: "AIzaSyDT0wNqbuoiZEmUbJc4MFA_5l4kedZbTjU",
     authDomain: "chargeup-4b09d.firebaseapp.com",
@@ -12,14 +10,10 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-// function sender() {
-//     var myName = document.getElementById("userInput").value;
-// }
 $('#submitButton').click(function () {
     $('.nameInput').hide();
 });
-// var myName = prompt("Enter your name");
-// var myName = document.getElementById("userInput").value;
+
 
 function getName() {
     var myName = document.getElementById("userInput").value;
@@ -27,14 +21,6 @@ function getName() {
         "sender": "<span style='color:blue'>" + myName + "</span>",
         "message": "<span style='color:red'>" + "has entered the chat!" + "</span>"
     });
-    // // get message
-    // var message = document.getElementById("message").value;
-
-    // // save in database
-    // firebase.database().ref("messages").push().set({
-    //     "sender": myName,
-    //     "message": message
-    // });
 }
 $("form").submit((e) => {
     e.preventDefault();
@@ -77,7 +63,6 @@ function setDate() {
 
 // attach listener for delete message
 firebase.database().ref("messages").on("child_removed", function (snapshot) {
-    // remove message node
     document.getElementById("message-" + snapshot.key).innerHTML = "This message has been removed";
 });
 
@@ -96,7 +81,7 @@ firebase.database().ref("messages").on("child_added", function (snapshot) {
     } else {
         setDate();
         html += snapshot.val().sender + ": " + snapshot.val().message;
-        html += "<span style = 'font-size:0.7em'>" + d.getHours() + ":" + m + "</span>";
+        html += " " + "<span style = 'font-size:0.7em'>" + d.getHours() + ":" + m + "</span>";
     }
 
     document.getElementById("messages").innerHTML += html;
