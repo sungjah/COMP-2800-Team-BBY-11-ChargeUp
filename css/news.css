@@ -1,5 +1,5 @@
 ﻿.newsBox {
-    max-height: 20vh;
+    height: 20vh;
     border-bottom-left-radius: 30px;
     border-top-right-radius: 30px;
     background-color: white;
@@ -7,6 +7,7 @@
     grid-template-columns: 33% 33% 33%;
     grid-template-rows: 20% 1fr;
     padding: 12px;
+    box-shadow: inset 0 0 2vw 0.15vh rgb(70, 226, 135);
 }
 
 .newsTitle {
