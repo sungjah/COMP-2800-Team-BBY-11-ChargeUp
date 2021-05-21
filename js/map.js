@@ -408,23 +408,29 @@
     }]
 }
 
-verifygeojson.features.forEach(function (marker){
-    var el2 = document.createElement('div');
-    el2.className = 'marker2';
-    
-    new mapboxgl.Marker(el2)
-         .setLngLat(marker.geometry.coordinates)
-         .setPopup(
-             new mapboxgl.Popup({
-                 offset: 25
-             }) // add popups
-             .setHTML(
-                 '<h3>' +
-                 marker.properties.address +
-                 '</h3><p>' +
-                 'Lot Operator: ' + marker.properties.lot_operator +
-                 '</p>'
-             )
-         )
-         .addTo(map);
-})
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        verifygeojson.features.forEach(function (marker) {
+            var el2 = document.createElement('div');
+            el2.className = 'marker2';
+
+            new mapboxgl.Marker(el2)
+                .setLngLat(marker.geometry.coordinates)
+                .setPopup(
+                    new mapboxgl.Popup({
+                        offset: 25
+                    }) // add popups
+                        .setHTML(
+                            '<h3>' +
+                            marker.properties.address +
+                            '</h3><p>' +
+                            'Lot Operator: ' + marker.properties.lot_operator +
+                            '</p>'
+                        )
+                )
+                .addTo(map);
+        })
+    } else {
+        // No user is signed in.
+    }
+});
