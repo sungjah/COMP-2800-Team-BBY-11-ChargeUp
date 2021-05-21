@@ -1,46 +1,41 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <title> ChargeUp </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Map</title>
-
-    <!-- Mapbox -->
-    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
-    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet" />
-    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js">
-    </script>
-    <link rel="stylesheet"
-        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
-        type="text/css">
-
     <!-- Other links -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 
-    <!-- Styles of our own -->
-    <link href="css/main_style.css" rel="stylesheet">
-    <link href="css/map.css" rel="stylesheet">
+
+    <!-- The CSS and JS file must be declared after the things above-->
+    <link href="css/main_style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="css/chat.css" />
+
+
 </head>
 
 <body>
-    <!--
-        NAV HEADER
-    -->
     <nav class="navbar navbar-expand-lg py-4 navbar-light " style="background-color: #3387FF;">
         <div class="container-fluid">
             <a class="navbar-brand" href="map.html"><img src="img/87b4f1ba62b54e6b90c3bd82c30e7b26.png" alt="logo1"></a>
-            <h1 class="header">ChargeUp</h1>
-            <button class="menuButton material-icons" type="button" onclick="displayMenu()">menu</button>
+            <a href="#top" id="top">
+                <h1 class="header">ChargeUp</h1>
+                <button class="menuButton material-icons" type="button" onclick="displayMenu()">menu</button>
+            </a>
         </div>
+
     </nav>
+
+    <div id="topMargin"></div>
 
     <!--Hamburger menu-->
     <div id="hamburgerMenu" class="">
@@ -51,14 +46,33 @@
         </div>
     </div>
 
-    <!--
-        MAP is displayed here
-    -->
-    <div id="map"></div>
+    <!-- <form onsubmit="return getName();">
+           
+            <button onclick="sender();" id="submitButton">Submit</button>
+        </form> -->
+    <h1>Chatroom</h1>
 
-    <!--
-        BOTTOM NAVBAR
-    -->
+    <form onsubmit="return getName();">
+        <div class="nameInput">
+            <input id="userInput" placeholder="Enter your name">
+            <!-- <input type="submit" value="submit" id="submitButton"> -->
+            <button type="submit" id="submitButton">Enter</button>
+        </div>
+    </form>
+    <div id=chatContainer>
+        <ul id="messages"></ul>
+    </div>
+    <form onsubmit="return sendMessage();">
+        <input id="message" placeholder="Enter message">
+
+        <input type="submit">
+    </form>
+
+    <!-- <ul id="messages"></ul> -->
+
+
+    <div id="bottomMargin"></div>
+
     <nav class="nav">
         <a href="./map.html" class="navlink">
             <i class="material-icons nav_icon">map</i>
@@ -79,23 +93,18 @@
     </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
     </script>
-  
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!--FIREBASE-->
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-storage.js"></script>
-
-    <script src="js/firebase_api_chargeup.js"></script>
-
-    <!--CUSTOM-->
-    <script src="js/map.js"></script>
+    <!-- Use firebase app and database. -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="js/chat.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/egg.js"></script>
     <script src="js/hamburger.js"></script>
+
 </body>
 
 </html>
