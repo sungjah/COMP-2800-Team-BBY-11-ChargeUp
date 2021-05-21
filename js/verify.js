@@ -41,7 +41,7 @@ function greetings() {
                     $("#username").text(n);
                 })
         } else {
-            // No user is signed in.
+            $("#username").html("there");
         }
     });
 }
