@@ -65,6 +65,16 @@ function deleteMessage(self) {
     firebase.database().ref("messages").child(messageId).remove();
 }
 
+var m, d = 0;
+
+function setDate() {
+    d = new Date()
+    if (m != d.getMinutes()) {
+        m = d.getMinutes();
+    }
+}
+
+
 // attach listener for delete message
 firebase.database().ref("messages").on("child_removed", function (snapshot) {
     // remove message node
@@ -78,13 +88,17 @@ firebase.database().ref("messages").on("child_added", function (snapshot) {
     // give each message a unique ID
     html += "<li id='message-" + snapshot.key + "'>";
     if (snapshot.val().sender == "<span style='color:blue'>" + myName + "</span>") {
+        setDate();
         html += snapshot.val().sender + ": " + snapshot.val().message + " " + "<button data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
         html += "Delete";
-        html += "</button>";
+        html += "</button>" + " " + "<span style = 'font-size:0.7em'>" + d.getHours() + ":" + m + "</span>";
         html += "</li>";
     } else {
+        setDate();
         html += snapshot.val().sender + ": " + snapshot.val().message;
+        html += "<span style = 'font-size:0.7em'>" + d.getHours() + ":" + m + "</span>";
     }
 
     document.getElementById("messages").innerHTML += html;
+
 });
