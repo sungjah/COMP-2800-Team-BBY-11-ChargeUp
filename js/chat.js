@@ -37,7 +37,7 @@ function sendMessage() {
         "message": message
     });
 
-
+    $('#myMessage')[0].reset();
     // prevent form from submitting
     return false;
 }
