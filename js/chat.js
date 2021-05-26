@@ -17,6 +17,12 @@ $('#submitButton').click(function () {
 
 function getName() {
     var myName = document.getElementById("userInput").value;
+
+    if (findPatternInString(myName, '<', '>', '</', '>')) {
+        console.log("Detected injection attempt");
+        return false;
+    }
+
     firebase.database().ref("messages").push().set({
         "sender": "<span style='color:blue'>" + myName + "</span>",
         "message": "<span style='color:red'>" + "has entered the chat!" + "</span>"
@@ -30,6 +36,15 @@ function sendMessage() {
     var myName = document.getElementById("userInput").value;
     // get message
     var message = document.getElementById("message").value;
+
+    if (findPatternInString(message, '<', '>', '</', '>')) {
+        console.log("Detected injection attempt");
+        return false;
+    }
+
+    message = replacePatternItemsInString(message, "***", "***", "<i><b>", "</b></i>");
+    message = replacePatternItemsInString(message, "**", "**", "<b>", "</b>");
+    message = replacePatternItemsInString(message, "*", "*", "<i>", "</i>");
 
     // save in database
     firebase.database().ref("messages").push().set({
