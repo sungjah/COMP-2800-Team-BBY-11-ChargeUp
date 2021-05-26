@@ -83,5 +83,5 @@ firebase.database().ref("messages").on("child_added", function (snapshot) {
         html += " " + "<span style = 'font-size:0.7em'>" + d.getHours() + ":" + m + "</span>" + "</li>" + "</div>";
     }
     document.getElementById("messages").innerHTML += html;
-
+    $('#messages')[0].scrollTop = $('#messages')[0].scrollHeight
 });
