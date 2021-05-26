@@ -37,19 +37,21 @@
         </div>
 
     </nav>
+
     <!--Hamburger menu-->
     <div id="hamburgerMenu" class="">
         <button class="exitButton material-icons" type="button" onclick="hideMenu()">clear</button>
         <div id="menuItemContainer">
             <a href="./about.html" class="menuItem">About Us</a>
-            <a href="./login.html" class="menuItem">Sign In</a>
         </div>
     </div>
 
     <div id="topMargin"></div>
 
-    <div id="firebaseui-auth-container"></div>
-    <div id="loader">Loading...</div>
+    <div id="container">
+        <div id="firebaseui-auth-container"></div>
+        <div id="loader">Loading...</div>
+    </div>
 
     <!--
         BOTTOM NAVBAR
@@ -69,7 +71,7 @@
         </a>
         <a href="./verify.html" class="navlink">
             <i class="material-icons nav_icon">account_circle</i>
-            <span class="navtext">Sign Up</span>
+            <span class="navtext">Apply</span>
         </a>
     </nav>
 
@@ -88,6 +90,9 @@
 
     <!-- Scripts of our own -->
     <script src="js/hamburger.js"></script>
+    <script>
+        signedIn();
+    </script>
     <script>
         // Initialize the FirebaseUI Widget using Firebase.
         var ui = new firebaseui.auth.AuthUI(firebase.auth());

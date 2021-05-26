@@ -47,7 +47,6 @@
         <button class="exitButton material-icons" type="button" onclick="hideMenu()">clear</button>
         <div id="menuItemContainer">
             <a href="./about.html" class="menuItem">About Us</a>
-            <a href="./login.html" class="menuItem">Sign In</a>
         </div>
     </div>
 
@@ -74,7 +73,7 @@
         </a>
         <a href="./verify.html" class="navlink">
             <i class="material-icons nav_icon">account_circle</i>
-            <span class="navtext">Sign Up</span>
+            <span class="navtext">Apply</span>
         </a>
     </nav>
 
@@ -90,12 +89,14 @@
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-storage.js"></script>
-
     <script src="js/firebase_api_chargeup.js"></script>
 
     <!--CUSTOM-->
     <script src="js/map.js"></script>
     <script src="js/hamburger.js"></script>
+    <script>
+        signedIn();
+    </script>
 </body>
 
 </html>

@@ -17,6 +17,12 @@ $('#submitButton').click(function () {
 
 function getName() {
     var myName = document.getElementById("userInput").value;
+
+    if (findPatternInString(myName, '<', '>', '</', '>')) {
+        console.log("Detected injection attempt");
+        return false;
+    }
+
     firebase.database().ref("messages").push().set({
         "sender": "<span style='color:blue'>" + myName + "</span>",
         "message": "<span style='color:red'>" + "has entered the chat!" + "</span>"
@@ -31,13 +37,23 @@ function sendMessage() {
     // get message
     var message = document.getElementById("message").value;
 
+    if (findPatternInString(message, '<', '>', '</', '>') || findPatternInString(message, '<', '/>')
+        || findPatternInString(message, '<script')) {
+        console.log("Detected injection attempt");
+        return false;
+    }
+
+    message = replacePatternItemsInString(message, "***", "***", "<i><b>", "</b></i>");
+    message = replacePatternItemsInString(message, "**", "**", "<b>", "</b>");
+    message = replacePatternItemsInString(message, "*", "*", "<i>", "</i>");
+
     // save in database
     firebase.database().ref("messages").push().set({
         "sender": "<span style='color:blue'>" + myName + "</span>",
         "message": message
     });
 
-
+    $('#myMessage')[0].reset();
     // prevent form from submitting
     return false;
 }
@@ -73,15 +89,15 @@ firebase.database().ref("messages").on("child_added", function (snapshot) {
     html += "<li id='message-" + snapshot.key + "'>";
     if (snapshot.val().sender == "<span style='color:blue'>" + myName + "</span>") {
         setDate();
-        html += "<div style ='text-align:right'>" + snapshot.val().sender + ": " + snapshot.val().message + " " + "<button data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
+        html += "<div id='message1' >" + snapshot.val().sender + ": " + snapshot.val().message + " " + "<button style ='font-size:0.7em' data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
         html += "Delete";
         html += "</button>" + " " + "<span style = 'font-size:0.7em'>" + d.getHours() + ":" + m + "</span>";
         html += "</li>" + "</div>";
     } else {
         setDate();
-        html += "<div style ='text-align:left'>" + snapshot.val().sender + ": " + snapshot.val().message;
+        html += "<div id='message2' style ='text-align:left'>" + snapshot.val().sender + ": " + snapshot.val().message;
         html += " " + "<span style = 'font-size:0.7em'>" + d.getHours() + ":" + m + "</span>" + "</li>" + "</div>";
     }
     document.getElementById("messages").innerHTML += html;
-
+    $('#messages')[0].scrollTop = $('#messages')[0].scrollHeight
 });
