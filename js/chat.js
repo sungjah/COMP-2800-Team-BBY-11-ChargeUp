@@ -73,13 +73,13 @@ firebase.database().ref("messages").on("child_added", function (snapshot) {
     html += "<li id='message-" + snapshot.key + "'>";
     if (snapshot.val().sender == "<span style='color:blue'>" + myName + "</span>") {
         setDate();
-        html += "<div style ='text-align:right'>" + snapshot.val().sender + ": " + snapshot.val().message + " " + "<button data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
+        html += "<div id='message1' >" + snapshot.val().sender + ": " + snapshot.val().message + " " + "<button style ='font-size:0.7em' data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
         html += "Delete";
         html += "</button>" + " " + "<span style = 'font-size:0.7em'>" + d.getHours() + ":" + m + "</span>";
         html += "</li>" + "</div>";
     } else {
         setDate();
-        html += "<div style ='text-align:left'>" + snapshot.val().sender + ": " + snapshot.val().message;
+        html += "<div id='message2' style ='text-align:left'>" + snapshot.val().sender + ": " + snapshot.val().message;
         html += " " + "<span style = 'font-size:0.7em'>" + d.getHours() + ":" + m + "</span>" + "</li>" + "</div>";
     }
     document.getElementById("messages").innerHTML += html;
