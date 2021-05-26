@@ -37,7 +37,8 @@ function sendMessage() {
     // get message
     var message = document.getElementById("message").value;
 
-    if (findPatternInString(message, '<', '>', '</', '>')) {
+    if (findPatternInString(message, '<', '>', '</', '>') || findPatternInString(message, '<', '/>')
+        || findPatternInString(message, '<script')) {
         console.log("Detected injection attempt");
         return false;
     }
