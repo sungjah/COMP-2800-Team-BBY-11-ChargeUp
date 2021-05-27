@@ -22,8 +22,6 @@ function submit() {
             } else if (province == "Default") {
                 alert('Please select a province')
             } else {
-
-
                 var verifyRef = db.collection("verify");
                 verifyRef.add({ //The us of curly brackets creates an object. We must use ":" to assign values to properties in an object.
                     address: address,
@@ -33,9 +31,7 @@ function submit() {
                     province: province,
                     country: country
                 });
-
                 window.location.href='map.html';
-
             }
         })
     }
