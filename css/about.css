@@ -21,7 +21,7 @@ body {
     border-style: solid;
     border-color: rgb(0, 106, 255);
     font-size: 2vh;
-    padding-top: 3vh;
+    padding-top: 1vh;
     box-shadow: inset 0 0 2vw 0.15vh rgb(70, 0, 135);
 }
 
@@ -31,6 +31,12 @@ body {
 
 #bottomMargin {
     padding-bottom: 15vh;
+}
+
+#chat {
+    color: midnightblue;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding-top: 10px;
 }
 
 /* Card flip CSS from

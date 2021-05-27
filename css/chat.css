@@ -16,7 +16,7 @@ body {
 }
 
 #messages {
-    height: 430px;
+    height: 45vh;
     overflow-y: scroll;
 }
 
@@ -44,7 +44,30 @@ body {
 
 #chat {
     color: midnightblue;
-    font-style: italic;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     padding-top: 10px;
+}
+
+#submitButton,
+#send {
+    width: 50%;
+    background-color: #3387FF;
+    color: white;
+    padding: 1vh 2vh;
+    margin: 1vh 0;
+    border: solid;
+    border-color: rgba(22, 60, 150, 0.462);
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: inset 0 0 30px 3px rgba(20, 70, 169, 0.489);
+    text-shadow: 2px 2px 0 black;
+}
+
+#submitButton:hover,
+#send:hover {
+    background-color: #3358ff;
+}
+
+#userInput, #message {
+    
 }
