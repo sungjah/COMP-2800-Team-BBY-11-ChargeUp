@@ -34,15 +34,10 @@ $("form").submit((e) => {
 
 function sendMessage() {
     var myName = document.getElementById("userInput").value;
-    // get message
-    var message = document.getElementById("message").value;
+    // get message and replace < with unicode < to invalidate any HTML contained within
+    var message = document.getElementById("message").value.replaceAll("<", "&lt;");
 
-    if (findPatternInString(message, '<', '>', '</', '>') || findPatternInString(message, '<', '/>')
-        || findPatternInString(message, '<script')) {
-        console.log("Detected injection attempt");
-        return false;
-    }
-
+    //replace markdown markers with relevant HTML
     message = replacePatternItemsInString(message, "***", "***", "<i><b>", "</b></i>");
     message = replacePatternItemsInString(message, "**", "**", "<b>", "</b>");
     message = replacePatternItemsInString(message, "*", "*", "<i>", "</i>");
@@ -52,7 +47,7 @@ function sendMessage() {
         "sender": "<span style='color:blue'>" + myName + "</span>",
         "message": message
     });
-
+    //Resets Message placeholder after submit
     $('#myMessage')[0].reset();
     // prevent form from submitting
     return false;
@@ -78,7 +73,7 @@ function setDate() {
 
 // attach listener for delete message
 firebase.database().ref("messages").on("child_removed", function (snapshot) {
-    document.getElementById("message-" + snapshot.key).innerHTML = "This message has been removed";
+    document.getElementById("message-" + snapshot.key).innerHTML = "<span class='removed'>This message has been removed</span>";
 });
 
 // listen for incoming messages
@@ -89,7 +84,7 @@ firebase.database().ref("messages").on("child_added", function (snapshot) {
     html += "<li id='message-" + snapshot.key + "'>";
     if (snapshot.val().sender == "<span style='color:blue'>" + myName + "</span>") {
         setDate();
-        html += "<div id='message1' >" + snapshot.val().sender + ": " + snapshot.val().message + " " + "<button style ='font-size:0.7em' data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
+        html += "<div id='message1' >" + snapshot.val().sender + ": " + "<span class='chatMessage'>" + snapshot.val().message + "</span>" + " " + "<button style ='font-size:0.7em' data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
         html += "Delete";
         html += "</button>" + " " + "<span style = 'font-size:0.7em'>" + d.getHours() + ":" + m + "</span>";
         html += "</li>" + "</div>";

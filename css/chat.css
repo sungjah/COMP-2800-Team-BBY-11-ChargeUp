@@ -50,10 +50,9 @@ body {
 
 #submitButton,
 #send {
-    width: 50%;
+    width: 100px;
     background-color: #3387FF;
     color: white;
-    padding: 1vh 2vh;
     margin: 1vh 0;
     border: solid;
     border-color: rgba(22, 60, 150, 0.462);
@@ -68,6 +67,5 @@ body {
     background-color: #3358ff;
 }
 
-#userInput, #message {
-    
-}
+#userInput,
+#message {}
