@@ -34,9 +34,10 @@ $("form").submit((e) => {
 
 function sendMessage() {
     var myName = document.getElementById("userInput").value;
-    // get message
+    // get message and replace < with unicode < to invalidate any HTML contained within
     var message = document.getElementById("message").value.replaceAll("<", "&lt;");
 
+    //replace markdown markers with relevant HTML
     message = replacePatternItemsInString(message, "***", "***", "<i><b>", "</b></i>");
     message = replacePatternItemsInString(message, "**", "**", "<b>", "</b>");
     message = replacePatternItemsInString(message, "*", "*", "<i>", "</i>");
