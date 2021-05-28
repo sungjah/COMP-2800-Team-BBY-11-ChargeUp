@@ -1,6 +1,8 @@
  mapboxgl.accessToken =
      'pk.eyJ1Ijoic3VuZ2phaCIsImEiOiJja25hMmpocDAwOWpsMndtaTRoanAzNXYwIn0.IxR5TqT3_wnNcwW33kKlkA';
- var geojson = {
+
+//public charger locations
+var geojson = {
      "type": "FeatureCollection",
      "features": [{
          "type": "Feature",
@@ -383,6 +385,7 @@
          .addTo(map);
  });
 
+//add the direction finder to the map
  map.addControl(
      new MapboxDirections({
          accessToken: mapboxgl.accessToken
@@ -391,7 +394,6 @@
  );
 
  /* Data for verified charging stations */
-
  var verifygeojson = {
      "type": "FeatureCollection",
      "features": [{
@@ -505,6 +507,7 @@
      ]
  }
 
+//add green verified markers if a user is logged in
  firebase.auth().onAuthStateChanged(function (user) {
      if (user) {
          verifygeojson.features.forEach(function (marker) {
@@ -517,17 +520,15 @@
                      new mapboxgl.Popup({
                          offset: 25
                      }) // add popups
-                     .setHTML(
-                         '<h3>' +
-                         marker.properties.address +
-                         '</h3><p>' +
-                         'Lot Operator: ' + marker.properties.lot_operator +
-                         '</p>'
-                     )
+                         .setHTML(
+                             '<h3>' +
+                             marker.properties.address +
+                             '</h3><p>' +
+                             'Lot Operator: ' + marker.properties.lot_operator +
+                             '</p>'
+                         )
                  )
                  .addTo(map);
          })
-     } else {
-         // No user is signed in.
      }
  });

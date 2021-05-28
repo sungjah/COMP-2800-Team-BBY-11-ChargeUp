@@ -13,6 +13,7 @@ function submit() {
             var country = document.getElementById("country").value;
             console.log(country);
 
+            //check if any of the fields are empty; write to Firestore if not
             if (address == "") {
                 alert('Please enter a valid address')
             } else if (postalcode == "") {
@@ -23,7 +24,8 @@ function submit() {
                 alert('Please select a province')
             } else {
                 var verifyRef = db.collection("verify");
-                verifyRef.add({ //The us of curly brackets creates an object. We must use ":" to assign values to properties in an object.
+                //write a new object into Firestore
+                verifyRef.add({
                     address: address,
                     unit: additional,
                     postalcode: postalcode,
@@ -31,17 +33,17 @@ function submit() {
                     province: province,
                     country: country
                 });
+                //redirect to map page
                 window.location.href='map.html';
             }
         })
     }
     //submit();
 
+    //chages the text to Hello name! if the user is logged in or Hello there! if not.
     function greetings() {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
-                // User is signed in.
-                // Do something for the user here. 
                 console.log(user.uid);
                 db.collection("users").doc(user.uid)
                     .get()
