@@ -10,9 +10,14 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+//Hides the name input after submission.
 $('#submitButton').click(function () {
     $('.nameInput').hide();
 });
+
+/**References to chat function: https://adnan-tech.com/realtime-web-based-chat-in-firebase/
+@author: Adnan Afzal
+**/
 
 
 function getName() {
@@ -88,8 +93,8 @@ firebase.database().ref("messages").on("child_added", function (snapshot) {
     var myName = document.getElementById("userInput").value;
     // give each message a unique ID
     html += "<li id='message-" + snapshot.key + "'>";
+    //if the message is from the user with this client's name, the message will display along with the delete button.
     if (snapshot.val().sender == "<span style='color:blue'>" + myName + "</span>") {
-        //if the message is from the user with this client's name:
         //get current time
         setDate();
         //create message body
@@ -106,6 +111,6 @@ firebase.database().ref("messages").on("child_added", function (snapshot) {
     }
     //add fresh message to the display
     document.getElementById("messages").innerHTML += html;
-    //scroll to this message
+    //automatically scroll to bottom of the message.
     $('#messages')[0].scrollTop = $('#messages')[0].scrollHeight
 });

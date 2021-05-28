@@ -1,8 +1,9 @@
  mapboxgl.accessToken =
      'pk.eyJ1Ijoic3VuZ2phaCIsImEiOiJja25hMmpocDAwOWpsMndtaTRoanAzNXYwIn0.IxR5TqT3_wnNcwW33kKlkA';
 
-//public charger locations
-var geojson = {
+ //geoJSON database of public charger locations
+ //Retrieved from City of Vancouver Open Data Portal: https://opendata.vancouver.ca/explore/dataset/electric-vehicle-charging-stations/information/
+ var geojson = {
      "type": "FeatureCollection",
      "features": [{
          "type": "Feature",
@@ -344,7 +345,11 @@ var geojson = {
          }
      }]
  };
-
+ /**
+  * References
+  * for MAP code and API: https: //docs.mapbox.com/mapbox-gl-js/example/simple-map/
+  * @author MapBox
+  */
  var map = new mapboxgl.Map({
      container: 'map',
      style: "mapbox://styles/mapbox/streets-v11",
@@ -360,6 +365,11 @@ var geojson = {
          trackUserLocation: true
      })
  );
+
+ /**
+  * References: https: //docs.mapbox.com/mapbox-gl-js/example/geojson-markers/
+  * @author MapBox 
+  */
 
  // add markers to map
  geojson.features.forEach(function (marker) {
@@ -385,7 +395,11 @@ var geojson = {
          .addTo(map);
  });
 
-//add the direction finder to the map
+ /**
+  * Add the direction finder to the map
+  * Reference: https: //docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-directions/
+  * @author MapBox
+  **/
  map.addControl(
      new MapboxDirections({
          accessToken: mapboxgl.accessToken
@@ -393,7 +407,7 @@ var geojson = {
      'top-left'
  );
 
- /* Data for verified charging stations */
+ /* Data for verified charging stations retrieved from user's application stored in firebase firestore.*/
  var verifygeojson = {
      "type": "FeatureCollection",
      "features": [{
@@ -507,7 +521,7 @@ var geojson = {
      ]
  }
 
-//add green verified markers if a user is logged in
+ //add green verified markers if a user is logged in
  firebase.auth().onAuthStateChanged(function (user) {
      if (user) {
          verifygeojson.features.forEach(function (marker) {
@@ -520,13 +534,13 @@ var geojson = {
                      new mapboxgl.Popup({
                          offset: 25
                      }) // add popups
-                         .setHTML(
-                             '<h3>' +
-                             marker.properties.address +
-                             '</h3><p>' +
-                             'Lot Operator: ' + marker.properties.lot_operator +
-                             '</p>'
-                         )
+                     .setHTML(
+                         '<h3>' +
+                         marker.properties.address +
+                         '</h3><p>' +
+                         'Lot Operator: ' + marker.properties.lot_operator +
+                         '</p>'
+                     )
                  )
                  .addTo(map);
          })

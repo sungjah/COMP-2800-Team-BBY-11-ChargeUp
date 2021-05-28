@@ -47,22 +47,20 @@
         </div>
     </div>
 
-    <!-- <form onsubmit="return getName();">
-           
-            <button onclick="sender();" id="submitButton">Submit</button>
-        </form> -->
     <h1 id="chat">Chatroom</h1>
 
+    <!--Enter your name input-->
     <form onsubmit="return getName();">
         <div class="nameInput">
             <input id="userInput" placeholder="Enter your name">
-            <!-- <input type="submit" value="submit" id="submitButton"> -->
             <button type="submit" id="submitButton">Enter</button>
         </div>
     </form>
+    <!--Code that displays the message from database-->
     <div id=chatContainer>
         <ul id="messages"></ul>
     </div>
+    <!-- Submit button-->
     <form id="myMessage" onsubmit="return sendMessage();">
         <input id="message" placeholder="Enter message">
 
