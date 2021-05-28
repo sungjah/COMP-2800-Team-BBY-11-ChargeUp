@@ -1,5 +1,8 @@
  mapboxgl.accessToken =
      'pk.eyJ1Ijoic3VuZ2phaCIsImEiOiJja25hMmpocDAwOWpsMndtaTRoanAzNXYwIn0.IxR5TqT3_wnNcwW33kKlkA';
+
+ //geoJSON database of public charger locations
+ //Retrieved from City of Vancouver Open Data Portal: https://opendata.vancouver.ca/explore/dataset/electric-vehicle-charging-stations/information/
  var geojson = {
      "type": "FeatureCollection",
      "features": [{
@@ -342,7 +345,11 @@
          }
      }]
  };
-
+ /**
+  * References
+  * for MAP code and API: https: //docs.mapbox.com/mapbox-gl-js/example/simple-map/
+  * @author MapBox
+  */
  var map = new mapboxgl.Map({
      container: 'map',
      style: "mapbox://styles/mapbox/streets-v11",
@@ -358,6 +365,11 @@
          trackUserLocation: true
      })
  );
+
+ /**
+  * References: https: //docs.mapbox.com/mapbox-gl-js/example/geojson-markers/
+  * @author MapBox 
+  */
 
  // add markers to map
  geojson.features.forEach(function (marker) {
@@ -383,6 +395,11 @@
          .addTo(map);
  });
 
+ /**
+  * Add the direction finder to the map
+  * Reference: https: //docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-directions/
+  * @author MapBox
+  **/
  map.addControl(
      new MapboxDirections({
          accessToken: mapboxgl.accessToken
@@ -390,47 +407,142 @@
      'top-left'
  );
 
-/* Data for verified charging stations */
-
+ /* Data for verified charging stations retrieved from user's application stored in firebase firestore.*/
  var verifygeojson = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "geometry": {
-            "type": "Point",
-            "coordinates": [-123.002986, 49.251406]
-        },
-        "properties": {
-            "address": "3700 Willingdon Avenue",
-            "lot_operator": "Private Lot",
-            "geo_local_area": "Burnaby"
-        }
-    }]
-}
+     "type": "FeatureCollection",
+     "features": [{
+             "type": "Feature",
+             "geometry": {
+                 "type": "Point",
+                 "coordinates": [-123.002986, 49.251406]
+             },
+             "properties": {
+                 "address": "3700 Willingdon Avenue",
+                 "lot_operator": "Private Lot",
+                 "geo_local_area": "Burnaby"
+             }
+         },
+         {
+             "type": "Feature",
+             "geometry": {
+                 "type": "Point",
+                 "coordinates": [-123.116226, 49.246292]
+             },
+             "properties": {
+                 "address": "4387 Cambie Street",
+                 "lot_operator": "Private Lot",
+                 "geo_local_area": "Vancouver"
+             }
+         },
+         {
+             "type": "Feature",
+             "geometry": {
+                 "type": "Point",
+                 "coordinates": [-123.1283233017204, 49.27253333708038]
+             },
+             "properties": {
+                 "address": "451 Beach Crescent",
+                 "lot_operator": "Private Lot",
+                 "geo_local_area": "ChargePoint Vancouver"
+             }
+         },
+         {
+             "type": "Feature",
+             "geometry": {
+                 "type": "Point",
+                 "coordinates": [-123.13492272766688, 49.271844821837675]
+             },
+             "properties": {
+                 "address": "1592 Johnston St",
+                 "lot_operator": "Private Lot",
+                 "geo_local_area": "ChargePoint Vancouver"
+             }
+         },
+         {
+             "type": "Feature",
+             "geometry": {
+                 "type": "Point",
+                 "coordinates": [-123.17143073782913, 49.25355154983896]
+             },
+             "properties": {
+                 "address": "2948 W 21st Ave",
+                 "lot_operator": "Private Lot",
+                 "geo_local_area": "Vancouver"
+             }
+         },
+         {
+             "type": "Feature",
+             "geometry": {
+                 "type": "Point",
+                 "coordinates": [-123.21584466488993, 49.26770055303261]
+             },
+             "properties": {
+                 "address": "4715 W 6th Ave",
+                 "lot_operator": "Private Lot",
+                 "geo_local_area": "Vancouver"
+             }
+         },
+         {
+             "type": "Feature",
+             "geometry": {
+                 "type": "Point",
+                 "coordinates": [-123.17943146247801, 49.27006658237515]
+             },
+             "properties": {
+                 "address": "1812 Waterloo St",
+                 "lot_operator": "Private Lot",
+                 "geo_local_area": "Vancouver"
+             }
+         },
+         {
+             "type": "Feature",
+             "geometry": {
+                 "type": "Point",
+                 "coordinates": [-123.06101134091406, 49.27108192664526]
+             },
+             "properties": {
+                 "address": "2140 Grant St",
+                 "lot_operator": "Private Lot",
+                 "geo_local_area": "Vancouver"
+             }
+         },
+         {
+             "type": "Feature",
+             "geometry": {
+                 "type": "Point",
+                 "coordinates": [-123.10710155758095, 49.25305311617801]
+             },
+             "properties": {
+                 "address": "95 W 20th Ave W",
+                 "lot_operator": "Private Lot",
+                 "geo_local_area": "Vancouver"
+             }
+         }
+     ]
+ }
 
-firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-        verifygeojson.features.forEach(function (marker) {
-            var el2 = document.createElement('div');
-            el2.className = 'marker2';
+ //add green verified markers if a user is logged in
+ firebase.auth().onAuthStateChanged(function (user) {
+     if (user) {
+         verifygeojson.features.forEach(function (marker) {
+             var el2 = document.createElement('div');
+             el2.className = 'marker2';
 
-            new mapboxgl.Marker(el2)
-                .setLngLat(marker.geometry.coordinates)
-                .setPopup(
-                    new mapboxgl.Popup({
-                        offset: 25
-                    }) // add popups
-                        .setHTML(
-                            '<h3>' +
-                            marker.properties.address +
-                            '</h3><p>' +
-                            'Lot Operator: ' + marker.properties.lot_operator +
-                            '</p>'
-                        )
-                )
-                .addTo(map);
-        })
-    } else {
-        // No user is signed in.
-    }
-});
+             new mapboxgl.Marker(el2)
+                 .setLngLat(marker.geometry.coordinates)
+                 .setPopup(
+                     new mapboxgl.Popup({
+                         offset: 25
+                     }) // add popups
+                     .setHTML(
+                         '<h3>' +
+                         marker.properties.address +
+                         '</h3><p>' +
+                         'Lot Operator: ' + marker.properties.lot_operator +
+                         '</p>'
+                     )
+                 )
+                 .addTo(map);
+         })
+     }
+ });

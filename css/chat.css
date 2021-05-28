@@ -4,7 +4,7 @@ li {
 
 body {
     text-align: center;
-    background-color: lightcyan;
+    background-color: white;
 }
 
 #chatContainer {
@@ -13,4 +13,56 @@ body {
     border-radius: 5px;
     padding: 10px;
     margin: 10px 10px;
+}
+
+#messages {
+    height: 45vh;
+    overflow-y: scroll;
+}
+
+#message2 {
+    border: 1px solid skyblue;
+    background-color: skyblue;
+    border-radius: 5px;
+    width: 50%;
+    margin-bottom: 10px;
+    margin-left: -30px;
+    padding: 10px;
+
+}
+
+#message1 {
+    border: 1px solid lightgrey;
+    background-color: lightgrey;
+    border-radius: 5px;
+    width: 50%;
+    margin-left: 50%;
+    text-align: left;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+#chat {
+    color: midnightblue;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding-top: 10px;
+}
+
+#submitButton,
+#send {
+    width: 100px;
+    background-color: #3387FF;
+    color: white;
+    margin: 1vh 0;
+    border: solid;
+    border-color: rgba(22, 60, 150, 0.462);
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: inset 0 0 30px 3px rgba(20, 70, 169, 0.489);
+    text-shadow: 2px 2px 0 black;
+}
+
+#submitButton:hover,
+#send:hover {
+    background-color: #3358ff;
 }

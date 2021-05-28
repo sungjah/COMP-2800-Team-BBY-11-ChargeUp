@@ -10,13 +10,21 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+//Hides the name input after submission.
 $('#submitButton').click(function () {
     $('.nameInput').hide();
 });
 
+/**References to chat function: https://adnan-tech.com/realtime-web-based-chat-in-firebase/
+@author: Adnan Afzal
+**/
+
 
 function getName() {
-    var myName = document.getElementById("userInput").value;
+    //replace < with unicode equivalent to invalidate HTML
+    var myName = document.getElementById("userInput").value.replaceAll("<", "&lt;");
+
+    //show and log that someone entered in chat
     firebase.database().ref("messages").push().set({
         "sender": "<span style='color:blue'>" + myName + "</span>",
         "message": "<span style='color:red'>" + "has entered the chat!" + "</span>"
@@ -27,17 +35,27 @@ $("form").submit((e) => {
 });
 
 function sendMessage() {
-    var myName = document.getElementById("userInput").value;
-    // get message
-    var message = document.getElementById("message").value;
+    // get message/name and replace < with unicode < to invalidate any HTML contained within
+    var myName = document.getElementById("userInput").value.replaceAll("<", "&lt;");
+    var message = document.getElementById("message").value.replaceAll("<", "&lt;");
+
+    //refuse to send a message if the name is empty
+    if (myName == "") {
+        return false;
+    }
+
+    //replace markdown markers with relevant HTML
+    message = replacePatternItemsInString(message, "***", "***", "<i><b>", "</b></i>");
+    message = replacePatternItemsInString(message, "**", "**", "<b>", "</b>");
+    message = replacePatternItemsInString(message, "*", "*", "<i>", "</i>");
 
     // save in database
     firebase.database().ref("messages").push().set({
         "sender": "<span style='color:blue'>" + myName + "</span>",
         "message": message
     });
-
-
+    //Resets Message text input after submit
+    $('#myMessage')[0].reset();
     // prevent form from submitting
     return false;
 }
@@ -51,9 +69,11 @@ function deleteMessage(self) {
     firebase.database().ref("messages").child(messageId).remove();
 }
 
+//initialize current time containers
 var m, d = 0;
 
 function setDate() {
+    //set current time for messages to show when placed in chat
     d = new Date()
     if (m != d.getMinutes()) {
         m = d.getMinutes();
@@ -62,26 +82,35 @@ function setDate() {
 
 // attach listener for delete message
 firebase.database().ref("messages").on("child_removed", function (snapshot) {
-    document.getElementById("message-" + snapshot.key).innerHTML = "This message has been removed";
+    //replace message with placeholder when it's deleted from Firebase
+    document.getElementById("message-" + snapshot.key).innerHTML = "<span class='removed'>This message has been removed</span>";
 });
 
 // listen for incoming messages
 firebase.database().ref("messages").on("child_added", function (snapshot) {
+    //initialize message HTML variable
     var html = "";
     var myName = document.getElementById("userInput").value;
     // give each message a unique ID
     html += "<li id='message-" + snapshot.key + "'>";
+    //if the message is from the user with this client's name, the message will display along with the delete button.
     if (snapshot.val().sender == "<span style='color:blue'>" + myName + "</span>") {
+        //get current time
         setDate();
-        html += "<div style ='text-align:right'>" + snapshot.val().sender + ": " + snapshot.val().message + " " + "<button data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
+        //create message body
+        html += "<div id='message1' >" + snapshot.val().sender + ": " + "<span class='chatMessage'>" + snapshot.val().message + "</span>" + " " + "<button style ='font-size:0.7em' data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
         html += "Delete";
+        //add delete buttom
         html += "</button>" + " " + "<span style = 'font-size:0.7em'>" + d.getHours() + ":" + m + "</span>";
         html += "</li>" + "</div>";
     } else {
+        //same as above but for other users' messages, so no delete
         setDate();
-        html += "<div style ='text-align:left'>" + snapshot.val().sender + ": " + snapshot.val().message;
+        html += "<div id='message2' style ='text-align:left'>" + snapshot.val().sender + ": " + snapshot.val().message;
         html += " " + "<span style = 'font-size:0.7em'>" + d.getHours() + ":" + m + "</span>" + "</li>" + "</div>";
     }
+    //add fresh message to the display
     document.getElementById("messages").innerHTML += html;
-
+    //automatically scroll to bottom of the message.
+    $('#messages')[0].scrollTop = $('#messages')[0].scrollHeight
 });

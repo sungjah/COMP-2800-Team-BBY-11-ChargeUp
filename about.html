@@ -42,7 +42,6 @@
         <button class="exitButton material-icons" type="button" onclick="hideMenu()">clear</button>
         <div id="menuItemContainer">
             <a href="./about.html" class="menuItem">About Us</a>
-            <a href="./login.html" class="menuItem">Sign In</a>
         </div>
     </div>
 
@@ -50,7 +49,7 @@
 
     <div id="content">
         <div id="groupDescription">
-            <h1>About Us</h1>
+            <h1 id="chat">About Us</h1>
             <p>As aspiring software developers, we believe that the future lies in our hands.
                 By supporting the use of electric vehicles, we can collectively lessen the amount of carbon emitted by
                 cars.
@@ -123,13 +122,15 @@
             <i class="material-icons nav_icon">question_answer</i>
             <span class="navtext">Chat</span>
         </a>
-        <a href="#" class="navlink">
-            <i class="material-icons nav_icon">article</i>
-            <span class="navtext">News</span>
+        <a href="./socialmedia.html" class="navlink">
+            <i class="material-icons nav_icon">groups</i>
+            <span class="navtext">Connect</span>
         </a>
         <a href="./verify.html" class="navlink">
-            <i class="material-icons nav_icon">account_circle</i>
-            <span class="navtext">Sign Up</span>
+            <i class="material-icons nav_icon"><span class="material-icons-outlined">
+                    monetization_on
+                </span></i>
+            <span class="navtext">Apply</span>
         </a>
     </nav>
 
@@ -138,10 +139,22 @@
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!--FIREBASE-->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-storage.js"></script>
+    <script src="js/firebase_api_chargeup.js"></script>
+
     <!-- Scripts of our own -->
     <script src="js/scroll.js"></script>
     <script src="js/egg.js"></script>
     <script src="js/hamburger.js"></script>
+    <script>
+        signedIn();
+    </script>
 
 </body>
 
