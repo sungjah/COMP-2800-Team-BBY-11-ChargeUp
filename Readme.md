@@ -1,10 +1,10 @@
-1. In order to begin working on this project, you will need any source code editor. (Recommended to use Visual Studio Code but you can use any that you prefer.)
-    a. After choosing the editor, begin by cloning the repo from the terminal. You can do that by "git clone https://github.com/sungjah/COMP-2800-Team-BBY-11-ChargeUp" without the quotation mark. 
-    b. There are no other programs you will need to install since this project only uses jquery, html, css, and javascript. 
+1. In order to begin working on this project, you will need a source code editor. (We recommend using Visual Studio Code but you can use any that you prefer.)
+    a. After selecting an editor, begin by cloning the repository from your terminal. You can do that by typing "git clone https://github.com/sungjah/COMP-2800-Team-BBY-11-ChargeUp. 
+    b. There are no other programs you will need to install since this project uses JQuery, HTML, CSS, and JavaScript. 
     c. Start working on the project on a different branch. You can do that by creating your own branch. Type "git checkout -b myBranch dev" on your terminal.
     d. This will automatically change your branch to newly created branch.
-    e. After you are done working on it, you can push it by typing 1) git add .  2) git commit -m "message of your own" 3) git push
-    f. After pushing, you can merge the branch by changing it to the dev branch (git checkout dev) and then typing "git merge myBranch"
+    e. After you are done working on it, you can push your changes by typing 1) git add .  2) git commit -m "message of your own" 3) git push
+    f. After pushing, you can merge the branch by changing to the dev branch (git checkout dev) and then typing "git merge myBranch"
 
 2. Mapbox API is already used in the project, therefore you do not need to download anything.
 
